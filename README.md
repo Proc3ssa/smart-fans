@@ -6,4 +6,10 @@ A javascript app to control fan states
 - Master switch for all fans
 - scheduler to turn fans on and off
 
+####Tasks 
+- [x] Fun switches on and off
+- [x] Master switch for all fans(on)
+- [ ] Master switch for all fans
+- [ ] scheduler to turn fans on and off
+
 ![fanon](images/fanon.gif)
