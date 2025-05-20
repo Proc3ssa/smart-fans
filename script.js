@@ -6,7 +6,6 @@ let rooms = [
         imgLoc: "./images/fanon.png",
         swich: function(){
             this.status = !this.status;
-            
         }
     },
 
@@ -38,66 +37,52 @@ let rooms = [
 ]
 
 let roomsContanier = document.getElementById("fans");
-let masterSwitchOn = document.getElementById("mswitchon");
-let masterSwitchOff = document.getElementById("mswitchoff");
-
+let masterSwitchOn = document.querySelector('header button');
 
 const render = ()=>{
     let fans = ``;
 
     rooms.forEach((room, index) =>{
-    fans += `
+        fans += `
         <div class="fan" style="background: url(./images/fan${(room.status) ? "on.gif" : "off.png"});
-    background-position: right center;
-    background-repeat: no-repeat;
-    background-size: auto 100%;">
+        background-position: right center;
+        background-repeat: no-repeat;
+        background-size: auto 100%;">
             <h5>${room.name}</h5>
             <p>Status: <span>${(room.status) ? "on" : "off"}</span></p>
             <button class="buttons" data-index="${index}">turn <span>${(room.status) ? "off" : "on"}</span></button>
         </div>
-    `;
+        `;
     });
 
-
     roomsContanier.innerHTML = fans;
-    document.querySelectorAll('.buttons').forEach((button) =>{
 
+    document.querySelectorAll('.buttons').forEach((button) =>{
         button.addEventListener('click', ()=>{
             const index = button.dataset.index;
             rooms[index].swich();
             render();
         });
-    
-        
     });
-
-    masterSwitchOn.addEventListener('click', ()=>{
-        
-
-        rooms.forEach((room) =>{
-            
-            room.status = true;
-        })
-        
-        masterSwitchOn.classList.replace("mswitchon", "mswitchoff");
-        render();
-    })
-
-    masterSwitchOff.addEventListener('click', ()=>{
-        
-
-        rooms.forEach((room) =>{
-            
-            room.status = true;
-        })
-        
-        masterSwitchOff.classList.replace("mswitchoff","mswitchon");
-        
-        masterSwitchOff.innerText = "Turn off all funs";
-
-        render();
-    })
 }
 
-render();
 
+masterSwitchOn.addEventListener('click', ()=>{
+    let status = (masterSwitchOn.id == "mswitchon");
+
+    rooms.forEach((room) =>{
+        room.status = status;
+    });
+
+    if (status) {
+        masterSwitchOn.innerText = "Turn off all fans";
+        masterSwitchOn.id = "mswitchoff";
+    } else {
+        masterSwitchOn.innerText = "Turn on all fans";
+        masterSwitchOn.id = "mswitchon";
+    }
+
+    render();
+});
+
+render();
