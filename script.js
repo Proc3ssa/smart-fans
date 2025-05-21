@@ -4,8 +4,8 @@ let rooms = [
         name: "room 1",
         status: false,
         imgLoc: "./images/fanon.png",
-        start: "00:00",
-        stop: "12:00"
+        start: "20:49",
+        stop: "20:51"
         
     },
 
@@ -64,6 +64,8 @@ const render = ()=>{
             render();
         });
     });
+
+    searchSchedule();
 }
 
 function addRoom(data){
@@ -75,7 +77,25 @@ function addRoom(data){
 
 }
 
+function searchSchedule(){
 
+    setInterval(()=>{
+       rooms.forEach((room, index) =>{
+        let time = `${new Date().getHours()}:${new Date().getMinutes()}`;
+        if(room.start == time){
+            rooms[index].status = true;
+            render();
+        }
+
+        if(room.stop == time){
+            rooms[index].status = false;
+            render();
+        }
+       });
+
+    }, 10000)
+
+}
 
 newroom.addEventListener('submit', (e)=>{
     e.preventDefault();
@@ -115,5 +135,6 @@ masterSwitchOn.addEventListener('click', ()=>{
 
     render();
 });
-
+        
+        console.log(`${new Date().getHours()}:${new Date().getMinutes()}`)
 render();
