@@ -4,35 +4,32 @@ let rooms = [
         name: "room 1",
         status: false,
         imgLoc: "./images/fanon.png",
-        swich: function(){
-            this.status = !this.status;
-        }
+        start: "00:00",
+        stop: "12:00"
+        
     },
 
     {
         name: "room 2",
         status: true,
         imgLoc: "./images/fanon.png",
-        swich: function(){
-            this.status = !this.status
-        }
+        start: "00:00",
+        stop: "12:00"
     },
 
     {
         name: "room 3",
         status: false,
         imgLoc: "./images/fanon.png",
-        swich: function(){
-            this.status = !this.status
-        }
+        start: "00:00",
+        stop: "12:00"
     },
     {
         name: "room 4",
         status: true,
         imgLoc: "./images/fanon.png",
-        swich: function(){
-            this.status = !this.status
-        }
+        start: "00:00",
+        stop: "12:00"
     }
 ]
 
@@ -60,7 +57,7 @@ const render = ()=>{
     document.querySelectorAll('.buttons').forEach((button) =>{
         button.addEventListener('click', ()=>{
             const index = button.dataset.index;
-            rooms[index].swich();
+            rooms[index].status = !rooms[index].status;
             render();
         });
     });
