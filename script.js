@@ -33,8 +33,11 @@ let rooms = [
     }
 ]
 
+
+
 let roomsContanier = document.getElementById("fans");
 let masterSwitchOn = document.querySelector('header button');
+let newroom = document.getElementById("newroom");
 
 const render = ()=>{
     let fans = ``;
@@ -63,6 +66,37 @@ const render = ()=>{
     });
 }
 
+function addRoom(data){
+
+    if(rooms.push(data)){
+        alert("New room added");
+        render()
+    }
+
+}
+
+
+
+newroom.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    let name = document.getElementById("roomname").value;
+    let start = document.getElementById("starttime").value;
+    let end = document.getElementById("endtime").value;
+
+    let data = {
+        name: name,
+        status: false,
+        imgLoc: "./images/fanon.png",
+        start: start,
+        stop: end
+    }
+
+    // console.table(data);
+
+    addRoom(data);
+
+
+})
 
 masterSwitchOn.addEventListener('click', ()=>{
     let status = (masterSwitchOn.id == "mswitchon");
